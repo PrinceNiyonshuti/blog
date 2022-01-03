@@ -19,12 +19,13 @@ Route::get('/', function () {
 
 Route::get('/posts/{post}',function($slug){
     $path = __DIR__."/../resources/posts/{$slug}.html";
+
     if(!file_exists($path)){
         // abort(404);
         return redirect('/');
     }
     $post = file_get_contents($path);
-    return view('post',[
+    return view('post',[    
         'post'=>$post
     ]);
-});
+})->whereAlpha('post');
