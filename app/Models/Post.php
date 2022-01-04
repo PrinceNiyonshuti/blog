@@ -42,4 +42,15 @@ class Post{
         // }
         // return cache()->remember("post.{$slug}",1200,fn()=>file_get_contents($path));
     }
+    public static function findorfail($slug)
+    {
+        $post= static::find($slug);
+
+        if(! $post){
+            throw new ModelNotFoundException();
+
+        }
+
+        return $post;
+    }
 }
