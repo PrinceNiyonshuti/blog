@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
-use Illuminate\Support\Facades\File;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +20,10 @@ return view('posts',[
     ]);
 });
 
-Route::get('/posts/{post}',function($slug){
+Route::get('/posts/{post}',function($id){
 
     return view('post',[
-        'post'  => Post::findorFail($slug)
+        'post'  => Post::findorFail($id)
     ]);
 
-})->where('post','[A-z_\-]+');
+});
