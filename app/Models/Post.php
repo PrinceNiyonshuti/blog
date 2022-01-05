@@ -16,4 +16,11 @@ class Post extends Model
     // protected $guard =['id'];
 
     // protected $guard =[];
+
+    // making the relationship to category table
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
