@@ -1,2 +1,4 @@
 # Blockers along the way
-- working with Route Wildcard Constraints where and whereAlpha , the where with control works but whereAlpha doesnt
+- working with Route Wildcard Constraints where and whereAlpha , the where with control works but whereAlpha doesn't
+- while using Eloquent model when i created the first record it saves it with the id of 1 but when i try to add another record it doesn't add one it replace the existing one
+- 
