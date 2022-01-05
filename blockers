@@ -1,4 +1,5 @@
 # Blockers along the way
 - working with Route Wildcard Constraints where and whereAlpha , the where with control works but whereAlpha doesn't
 - while using Eloquent model when i created the first record it saves it with the id of 1 but when i try to add another record it doesn't add one it replace the existing one
+- whiles seeding the db ii faced issue with User id when i was assigning it to the post in seeding it doesnt work but for the category it does work well
 - 
