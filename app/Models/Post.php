@@ -17,6 +17,10 @@ class Post extends Model
 
     // protected $guard =[];
 
+    // Making Eager load
+
+    protected $with=['category','author'];
+
     // making the relationship to category table
 
     public function category()
