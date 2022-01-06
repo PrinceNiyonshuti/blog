@@ -17,8 +17,21 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
+
+    // Making a search functionality
+    $posts = Post::latest();
+
+    // dd(request('search'));
+
+    if(request('search')){
+        $posts
+        ->where('title','like','%' . request('search') . '%')
+        ->orWhere('body','like','%' . request('search') . '%');
+    }
+
+
     return view('posts',[
-        'posts'=>Post::latest('id')->get(),
+        'posts'=>$posts->get(),
         'categories'=>Category::all()
     ]);
 })->name('home');
