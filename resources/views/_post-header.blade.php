@@ -40,7 +40,7 @@
                             </x-drop-down-item> --}}
 
                             {{-- Second way to use request from url --}}
-                            <x-drop-down-item href="/categories/{{ $category->slug }}" :active="request()->is('categories/'.$category->slug)">
+                            <x-drop-down-item href="?category={{ $category->slug }}" :active="request()->is('categories/'.$category->slug)">
                                 {{ ucwords($category->name) }}
                             </x-drop-down-item>
 

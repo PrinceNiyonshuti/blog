@@ -40,6 +40,13 @@ class Post extends Model
             ->orWhere('body','like','%' . $search . '%')
         );
 
+        // searching using category
+        $query->when($filters['category'] ?? false ,fn($query,$category) =>
+            $query->whereHas('category',fn($query) =>
+                $query->where('slug',$category)
+            )
+        );
+
     }
 
     // making the relationship to category table
