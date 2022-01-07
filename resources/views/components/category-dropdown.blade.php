@@ -19,7 +19,7 @@
     </x-slot>
 
     {{-- Links --}}
-    <x-drop-down-item href="/" :active="request()->routeIs('home')">All</x-drop-down-item>
+    <x-drop-down-item href="/?{{ http_build_query(request()->except('category','page')) }}" :active="request()->routeIs('home')">All</x-drop-down-item>
 
     @foreach ($categories as $category)
 
@@ -31,7 +31,7 @@
 
         {{-- Second way to use request from url --}}
         <x-drop-down-item
-            href="?category={{ $category->slug }}&{{ http_build_query(request()->except('category')) }}"
+            href="?category={{ $category->slug }}&{{ http_build_query(request()->except('category','page')) }}"
             :active="request()->is('categories/'.$category->slug)">
             {{ ucwords($category->name) }}
         </x-drop-down-item>
