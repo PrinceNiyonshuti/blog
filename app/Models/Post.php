@@ -47,6 +47,14 @@ class Post extends Model
             )
         );
 
+
+        // searching using author
+        $query->when($filters['author'] ?? false ,fn($query,$author) =>
+            $query->whereHas('author',fn($query) =>
+                $query->where('username',$author)
+            )
+        );
+
     }
 
     // making the relationship to category table
