@@ -23,8 +23,6 @@
 
     @foreach ($categories as $category)
 
-        {{-- {{ isset($currentCategory) && $currentCategory->is($category) ? 'bg-blue-500 text-white' : '' }} --}}
-
         {{--
             *first method to use
             <x-drop-down-item href="/categories/{{ $category->slug }}" :active="isset($currentCategory) && $currentCategory->is($category)">
@@ -32,7 +30,9 @@
         </x-drop-down-item> --}}
 
         {{-- Second way to use request from url --}}
-        <x-drop-down-item href="?category={{ $category->slug }}" :active="request()->is('categories/'.$category->slug)">
+        <x-drop-down-item
+            href="?category={{ $category->slug }}&{{ http_build_query(request()->except('category')) }}"
+            :active="request()->is('categories/'.$category->slug)">
             {{ ucwords($category->name) }}
         </x-drop-down-item>
 
