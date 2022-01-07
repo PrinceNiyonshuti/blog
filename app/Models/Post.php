@@ -21,6 +21,27 @@ class Post extends Model
 
     protected $with=['category','author'];
 
+    // making our query set scope
+
+    public function scopeFilter($query , array $filters)
+    {
+        // first way to do filter searching
+        // if($filters['search'] ?? false){
+        //     $query
+        //     ->where('title','like','%' . request('search') . '%')
+        //     ->orWhere('body','like','%' . request('search') . '%');
+        // }
+
+        // the second alternative way
+
+        $query->when($filters['search'] ?? false ,fn($query,$search) =>
+        $query
+            ->where('title','like','%' . $search . '%')
+            ->orWhere('body','like','%' . $search . '%')
+        );
+
+    }
+
     // making the relationship to category table
 
     public function category()
