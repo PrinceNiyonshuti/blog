@@ -1,5 +1,6 @@
 # Blog web app
 
+Blog app made using laravel v.7
 ## Documentation
 
 before starting to run the project
