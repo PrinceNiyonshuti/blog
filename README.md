@@ -19,3 +19,7 @@ before starting to run the project
     php artisan db:seed
     or
     php artisan migrate:fresh --seed
+
+## Feedback and issues
+
+Any issue and feedback from the app don't hesitate to make an issue
