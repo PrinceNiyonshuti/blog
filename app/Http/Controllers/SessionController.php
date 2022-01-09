@@ -18,13 +18,13 @@ class SessionController extends Controller
     public function store()
     {
         // validate the request
-        $attibutes = request()->validate([
+        $attributes = request()->validate([
             'email' => 'required|email|exists:users,email',
             'password' => 'required'
         ]);
 
         // attempt to authenticate and log in the user
-        if(auth()->attempt($attibutes)){
+        if(auth()->attempt($attributes)){
 
             // create new session
             session()->regenerate();
