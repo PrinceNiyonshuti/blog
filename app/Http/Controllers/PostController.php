@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
 
+
 class PostController extends Controller
 {
     public function index()
@@ -26,6 +27,14 @@ class PostController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        if(auth()->guest()){
+            abort(Response::HTTP_FORBIDDEN);
+        }
+
+        return view('posts.create');
+    }
 
     // protected function getPosts(){
 
