@@ -21,6 +21,22 @@ Route::get('/login',[SessionController::class,'create'])->middleware('guest');
 Route::post('/login',[SessionController::class,'store'])->middleware('guest');
 Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
 
+Route::get('ping',function(){
+
+    $mailchimp = new \MailchimpMarketing\ApiClient();
+
+    $mailchimp->setConfig([
+        'apiKey' => config('services.mailchimp.key'),
+        'server' => 'us20'
+    ]);
+
+
+    $response = $mailchimp->lists->addListMember('95711263ff', [
+        "email_address" => "princeniyonshuti47@gmail.com",
+        "status" => "subscribed",
+    ]);
+    ddd($response);
+});
 // Route::get('categories/{category:slug}',function(Category $category){
 //     return view('posts',[
 //         'posts'=> $category->posts,
