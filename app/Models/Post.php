@@ -19,7 +19,7 @@ class Post extends Model
 
     // Making Eager load
 
-    protected $with=['category','author'];
+    // protected $with=['category','author'];
 
     // making our query set scope
 

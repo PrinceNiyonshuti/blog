@@ -9,6 +9,9 @@ class Comment extends Model
 {
     use HasFactory;
 
+    // allow fillable properties
+    // protected $guarded = [];
+
     public function post()
     {
         return $this->belongsTo(Post::class);
