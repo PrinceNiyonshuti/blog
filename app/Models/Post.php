@@ -11,7 +11,7 @@ class Post extends Model
 
     // 3 ways to allow mass assignment and its vulnerable protection
 
-    protected $fillable = ['title','excerpt','body',];
+    // protected $fillable = ['title', 'body', 'user_id', 'category_id', 'excerpt', 'slug'];
 
     // protected $guard =['id'];
 
@@ -20,6 +20,7 @@ class Post extends Model
     // Making Eager load
 
     // protected $with=['category','author'];
+
 
     // making our query set scope
 

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
-
+use Illuminate\Validation\Rule;
+use Symfony\Component\HttpFoundation\Response;
 
 class PostController extends Controller
 {
@@ -29,11 +30,28 @@ class PostController extends Controller
 
     public function create()
     {
-        if(auth()->guest()){
-            abort(Response::HTTP_FORBIDDEN);
-        }
-
         return view('posts.create');
+    }
+
+
+    // create a post
+
+    public function store()
+    {
+
+        $attributes = request()->validate([
+            'title' => 'required',
+            'slug' => 'required|unique:posts',
+            'excerpt' => 'required',
+            'body' => 'required',
+            'category_id' => 'required|exists:categories,id'
+        ]);
+
+        // get user id
+        $attributes['user_id'] = auth()->id();
+        Post::create($attributes);
+
+        return redirect('/');
     }
 
     // protected function getPosts(){
