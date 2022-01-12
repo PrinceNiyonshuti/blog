@@ -38,9 +38,9 @@ class PostController extends Controller
 
     public function store()
     {
-
         $attributes = request()->validate([
             'title' => 'required',
+            'thumbnail' => 'required|image',
             'slug' => 'required|unique:posts',
             'excerpt' => 'required',
             'body' => 'required',
@@ -49,25 +49,9 @@ class PostController extends Controller
 
         // get user id
         $attributes['user_id'] = auth()->id();
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
         Post::create($attributes);
 
         return redirect('/');
     }
-
-    // protected function getPosts(){
-
-    //     return Post::latest()->filter()->get();
-
-    //     // Making a search functionality
-    //     $posts = Post::latest();
-
-    //     // dd(request('search'));
-    //     if(request('search')){
-    //         $posts
-    //         ->where('title','like','%' . request('search') . '%')
-    //         ->orWhere('body','like','%' . request('search') . '%');
-    //     }
-
-    //     return $posts->get();
-    // }
 }

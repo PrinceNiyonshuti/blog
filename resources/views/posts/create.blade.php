@@ -1,7 +1,18 @@
 <x-layout>
-    <section class="px-6 py-8">
-        <form action="/admin/post" method="POST" class="border border-gray-200 p-6 rounder-xl max-w-sm mx-auto">
+    <section class="py-8 max-w-md mx-auto">
+        <h1 class="text-lg font-bold mb-4">Publish New Post</h1>
+        <form action="/admin/post" method="POST" class="border border-gray-200 p-6 rounder-xl" enctype="multipart/form-data">
             @csrf
+
+            <div class="mb-6">
+                <label for="thumbnail" class="block mb-2 uppercase font-bold text-xs text-gray-700">
+                    Thumbnail
+                </label>
+                <input class="border border-gray-400 p-2 w-full" type="file" name="thumbnail" id="thumbnail" value="{{ old('thumbnail') }}"  required>
+                @error('thumbnail')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
             <div class="mb-6">
                 <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
@@ -56,7 +67,10 @@
                 <select name="category_id" id="category_id">
 
                     @foreach (\App\Models\Category::all() as $category)
-                        <option value="{{ $category->id }}">{{ ucwords($category->name) }}</option>
+                        <option
+                            value="{{ $category->id }}"
+                            {{ old('category_id' == $category->id ? 'selected' : '') }}
+                        >{{ ucwords($category->name) }}</option>
                     @endforeach
 
                 </select>
