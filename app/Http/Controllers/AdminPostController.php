@@ -74,4 +74,5 @@ class AdminPostController extends Controller
         $post->delete();
         return back()->with('success', 'Post Deleted successfully!');
     }
+    
 }
