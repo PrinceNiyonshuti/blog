@@ -28,6 +28,10 @@ Route::post('newsletter',NewsletterController::class);
 
 // Admin Controllers
 Route::middleware('can:admin')->group(function(){
+
+    // Route resource
+    // Route::resource('admin/post',AdminPostController::class)->except('show');
+
     Route::get('admin/posts/create',[AdminPostController::class,'create']);
     Route::post('admin/post',[AdminPostController::class,'store']);
     Route::get('admin/posts',[AdminPostController::class,'index']);
